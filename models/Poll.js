@@ -8,13 +8,17 @@ const pollSchema = new mongoose.Schema({
 		required: true,
 	},
 
-	yes: {
-		type: Number,
+	optionA: {
+		type: String,
 	},
 
-	no: {
-		type: Number,
+	optionB: {
+		type: String,
 	},
+	// createdBy: {
+	// 	type: mongoose.Schema.Types.ObjectId,
+	// 	ref: "User",
+	// },
 });
 
 //Create Model
