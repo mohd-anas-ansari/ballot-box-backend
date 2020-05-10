@@ -4,20 +4,25 @@ module.exports = {
 	registerUser: async function (req, res, next) {
 		try {
 			let user = await User.create(req.body);
-			res.json({ success: true, message: "Welcome User", user });
+			// res.json({ success: true, message: "Welcome User", user });
+			res.redirect("/api/v1/users/login");
 		} catch (error) {
 			console.log(error, "error");
 			res.send(error.message);
 		}
 	},
 
-	loginForm: async function (req, res) {
+	loggedinUsers: async function (req, res) {
 		try {
 			let allUsers = await User.find({});
 			res.json(allUsers);
 		} catch (error) {
 			res.json(error.message);
 		}
+	},
+
+	loginForm: function (req, res) {
+		res.render('login')
 	},
 
 	loginAuth: async function (req, res, next) {
