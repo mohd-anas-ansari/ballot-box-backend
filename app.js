@@ -7,6 +7,7 @@ var mongoose = require("mongoose");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+const pollRouter = require("./routes/polls");
 
 //connect database
 mongoose.connect("mongodb://localhost/polling-booth", (err) => {
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/api/v1/users", usersRouter);
+app.use("/api/v1/polls", pollRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
