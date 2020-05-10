@@ -7,13 +7,26 @@ module.exports = {
 			res.json({ success: true, message: "Welcome User", user });
 		} catch (error) {
 			console.log(error, "error");
-			res.status(400).send(error.message);
+			res.send(error.message);
 		}
 	},
 
-	loginForm: function (req, res, next) {
-		res.send("User page");
+	loginForm: async function (req, res) {
+		try {
+			let allUsers = await User.find({});
+			res.json(allUsers);
+		} catch (error) {
+			res.json(error.message);
+		}
 	},
 
-	loginAuth: function (req, res, next) {},
+	loginAuth: async function (req, res, next) {
+		try {
+			let user = await User.find({ password: req.body.password });
+			res.json({ success: true, message: "Welcome Logged In User" });
+		} catch (error) {
+			console.log(error, "error");
+			res.send(error.message);
+		}
+	},
 };
