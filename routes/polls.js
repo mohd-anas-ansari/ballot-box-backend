@@ -1,8 +1,11 @@
 const express = require("express");
-const router = expess.Router();
 
+const router = express.Router();
 
+//require polls Controllers
+const pollsController = require("../controllers/polls");
 
-router.get("/", pollController);
+router.get("/", pollsController.getPolls);
+router.post("/create", pollsController.createPoll);
 
 module.exports = router;
