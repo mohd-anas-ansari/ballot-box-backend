@@ -1,7 +1,11 @@
 const User = require("../models/User");
 
 module.exports = {
-	registerUser: async function (req, res, next) {
+	registerForm: function (req, res) {
+		res.render("register");
+	},
+
+	registerUser: async function (req, res) {
 		try {
 			let user = await User.create(req.body);
 			// res.json({ success: true, message: "Welcome User", user });
@@ -12,7 +16,7 @@ module.exports = {
 		}
 	},
 
-	loggedinUsers: async function (req, res) {
+	showloggedinUsers: async function (req, res) {
 		try {
 			let allUsers = await User.find({});
 			res.json(allUsers);
@@ -22,13 +26,14 @@ module.exports = {
 	},
 
 	loginForm: function (req, res) {
-		res.render('login')
+		res.render("login");
 	},
 
-	loginAuth: async function (req, res, next) {
+	loginAuth: async function (req, res) {
 		try {
-			let user = await User.find({ password: req.body.password });
-			res.json({ success: true, message: "Welcome Logged In User" });
+			let user = await User.findOne({ email: req.body.email });
+			if (!user) return res.json({ success: false, message: "User not found" });
+			res.json({ success: true, message: "Welcome Logged In User", user });
 		} catch (error) {
 			console.log(error, "error");
 			res.send(error.message);

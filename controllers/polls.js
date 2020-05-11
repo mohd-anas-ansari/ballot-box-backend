@@ -8,7 +8,8 @@ module.exports = {
 		} catch (error) {
 			res.json(error.message);
 		}
-	},
+  },
+  
 	//POST create new poll
 	createPoll: async function (req, res) {
 		try {
