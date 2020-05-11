@@ -1,4 +1,4 @@
-# polling-booth-backend
+# ballot-box-backend
 
 ## Routes Completed
 

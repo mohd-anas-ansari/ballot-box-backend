@@ -6,11 +6,15 @@
 	</head>
 	<body>
 		<h1>HomePage</h1>
-		<p>Welcome to Polling booth</p>
+		<p>Welcome to <%= title %></p>
 		<hr />
 		<div class="buttons">
-			<button class="home-page-button login-button">LogIn</button>
-			<button class="home-page-button signup-button">SignUp</button>
+			<a href="/api/v1/users/login"
+				><button class="home-page-button login-button">LogIn</button></a
+			>
+			<a href="/api/v1/users/register"
+				><button class="home-page-button signup-button">SignUp</button></a
+			>
 		</div>
 	</body>
 </html>
